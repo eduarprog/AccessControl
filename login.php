@@ -8,6 +8,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Login - AccessControl</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+      body{
+        zoom: 90%;
+      }
+    </style>
     <link rel="shortcut icon" href="https://p7.hiclipart.com/preview/442/477/305/computer-icons-user-profile-avatar-profile.jpg">
 </head>
 <body>
@@ -26,7 +31,7 @@
               <div data-mdb-input-init class="form-outline form-white mb-4">
                 <input placeholder="Password" type="password" name="pass" id="typePasswordX" class="form-control form-control-lg" />
               </div>
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="forgotpassword.php">Forgot password?</a></p>
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
               <p class="mb-0">Don't have an account? <a href="register.php" class="text-white-50 fw-bold">Sign Up</a>

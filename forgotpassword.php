@@ -8,8 +8,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Forgot Password - AccessControl</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="https://p7.hiclipart.com/preview/442/477/305/computer-icons-user-profile-avatar-profile.jpg">
-</head>
+    <link rel="shortcut icon" href="https://www.pikpng.com/pngl/m/247-2474074_forgot-password-icon-forgot-password-icon-png-clipart.png">
+    <style>
+      body{
+        zoom: 90%;
+      }
+    </style>
+  </head>
 <body>
 <section class="vh-90 gradient-custom">
   <div class="container py-5 h-100">
@@ -18,18 +23,14 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-3 text-center">
             <div class="mb-md-5 mt-md-4 pb-5">
-              <h2 class="fw-bold mb-2 text-uppercase"><i class="fa-regular fa-user">&nbsp;</i>!</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+              <h2 class="fw-bold mb-2 text-uppercase"><i class="fa-solid fa-unlock">&nbsp;</i>Recover your password</h2>
+              <p class="text-white-50 mb-5">Enter your email from your registered account.</p>
               <div data-mdb-input-init class="form-outline form-white mb-4">
                 <input placeholder="Email" type="email" name="email" id="typeEmailX" class="form-control form-control-lg" />
               </div>
-              <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input placeholder="Password" type="password" name="pass" id="typePasswordX" class="form-control form-control-lg" />
-              </div>
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-              <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Send</button>
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
-              <p class="mb-0">Don't have an account? <a href="register.php" class="text-white-50 fw-bold">Sign Up</a>
+              <p class="mb-0">Remembered your credentials?<a href="register.php" class="text-white-50 fw-bold">Sign Up</a>
               </div>
             </div>
           </div>

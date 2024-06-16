@@ -9,6 +9,11 @@
     <title>Register - AccessControl</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="https://toppng.com/uploads/preview/yukle-wode-svg-png-icon-free-download-registration-ico-11563290294tngylbfqqx.png">
+    <style>
+      body{
+        zoom: 90%;
+      }
+    </style>
 </head>
 <body>
 <section class="vh-90 gradient-custom">
