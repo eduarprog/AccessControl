@@ -26,7 +26,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      
+      <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
