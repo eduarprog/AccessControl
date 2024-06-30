@@ -1,3 +1,30 @@
+<?php
+
+require 'connection.php';
+$connection = connection();
+
+$name = "";
+$date1 = "";
+$email = "";
+$password = "";
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST["name"];
+    $date1 = $_POST["date1"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+ 
+    $sql = "INSERT INTO register (name, date1, email, password)" .
+        "VALUES ('$nombre', '$date1', '$email', '$password')";
+    $result = $connection->query($sql);
+
+
+    header("location: register.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
