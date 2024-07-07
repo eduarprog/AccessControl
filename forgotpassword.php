@@ -25,8 +25,15 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase"><i class="fa-solid fa-unlock">&nbsp;</i>Recover your password</h2>
               <p class="text-white-50 mb-5">Enter your email from your registered account.</p>
+              <form action="email_check.php" method="post" >
+              <?php if (isset($_GET["error"])) {
+              echo "<p>Este correo no existe, favor probar con el correo correcto nuevamente.</p>";
+              } ?>
+             <?php if (isset($_GET["success"])) {
+             echo "<p>Correo enviado exitosamente.</p>";
+              } ?>
               <div data-mdb-input-init class="form-outline form-white mb-4">
-                <input placeholder="Email" type="email" name="email" id="typeEmailX" class="form-control form-control-lg" />
+                <input placeholder="Email" type="email" name="email" id="email" class="form-control form-control-lg" />
               </div>
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Send</button>
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
@@ -38,6 +45,7 @@
       </div>
     </div>
   </div>
+ </form>
 </section>
 </body>
 </html>

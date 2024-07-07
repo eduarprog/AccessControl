@@ -3,22 +3,20 @@
 require 'connection.php';
 $connection = connection();
 
-$name = "";
+$nam = "";
 $date1 = "";
 $email = "";
-$password = "";
-
+$pass = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST["name"];
+    $name = $_POST["nam"];
     $date1 = $_POST["date1"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = $_POST["pass"];
  
-    $sql = "INSERT INTO register (name, date1, email, password)" .
-        "VALUES ('$nombre', '$date1', '$email', '$password')";
+    $sql = "INSERT INTO register (nam, date1, email, pass)" .
+           "VALUES ('$name', '$date1', '$email', '$password')";
     $result = $connection->query($sql);
-
 
     header("location: register.php");
     exit;
@@ -54,21 +52,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <p class="text-white-50 mb-5">Fill out your corresponding information</p>
               <div class="row mb-3">
                 <div class="col-6">
+                <form method="post" >
                   <div data-mdb-input-init class="form-outline form-white">
-                    <input required placeholder="First Name" type="text" name="nombre" id="typeFirstNameX" class="form-control form-control-lg" />
+                    <input required placeholder="First Name" type="text" name="nam" id="typeFirstNameX" class="form-control form-control-lg" value="<?php echo $nam ?>" />
                   </div>
                 </div>
                 <div class="col-6">
                   <div data-mdb-input-init class="form-outline form-white">
-                    <input required type="date" name="fecha_nacimiento" id="typeLastNameX" class="form-control form-control-lg" />
+                    <input required type="date" name="date1" id="typeLastNameX" class="form-control form-control-lg" value="<?php echo $date1 ?>" />
                   </div>
                 </div>
               </div>
               <div data-mdb-input-init class="form-outline form-white  mb-3">
-                <input required placeholder="Email"  type="email" name="email" id="typeEmailX" class="form-control form-control-lg " />
+                <input required placeholder="Email"  type="email" name="email" id="typeEmailX" class="form-control form-control-lg" value="<?php echo $email ?>" />
               </div>
-              <div data-mdb-input-init class="form-outline form-white mb-3">
-                <input required type="password" placeholder="Password" name="pass" id="typePasswordX" class="form-control form-control-lg" />
+              <div  data-mdb-input-init class="form-outline form-white mb-3">
+                <input required type="password" placeholder="Password" name="pass" id="contra1" class="form-control form-control-lg" value="<?php echo $pass ?>" />
+              </div>
+              <div id="error-message" style="display:none"></div>
+              <div  data-mdb-input-init class="form-outline form-white mb-3">
+                <input required type="password" placeholder="Password again please!" id="contra2" class="form-control form-control-lg" />
               </div>
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
               <div class="d-flex justify-content-center text-center mt-4 pt-1">
@@ -80,7 +83,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
     </div>
   </div>
+  </form>
 </section>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
 
+        var contra1Value = document.getElementById('contra1').value;
+        var contra2Value = document.getElementById('contra2').value;
+
+            if (contra1Value !== contra2Value) {
+            var errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.textContent = 'Los textos en los dos inputs no son iguales. Por favor, asegúrate de que coincidan.';
+            errorMessageElement.style.display = 'block';
+        } else {
+            this.submit();
+        }
+    });
+</script>
 </body>
 </html>

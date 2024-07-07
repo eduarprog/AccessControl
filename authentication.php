@@ -3,9 +3,9 @@
 require_once "connection.php";
 $connection = connection();
 
-$name = "";
-$usuario = "";
-$contraseña = "";
+$nam = "";
+$email = "";
+$pass = "";
 
 
 $sql = "SELECT * FROM register WHERE email = ?";
@@ -20,10 +20,10 @@ if (!$row) {
 }
 
 $destinatario = filter_var($email, FILTER_VALIDATE_EMAIL);
-$asunto = "Correo de recuperacion $name = {$row['name']} ";
+$asunto = "Correo de recuperacion $nam = {$row['nam']} ";
 
-$carta = "Datos a continuacion; $name = {$row['name']}; \n";
+$carta = "Datos a continuacion; $nam = {$row['nam']}; \n";
 $carta .= "Correo:  $email = {$row['email']}; \n";
-$carta .= "contrasena: $contraseña = {$row['contraseña']};";
+$carta .= "contrasena: $pass = {$row['pass']};";
 
 mail($destinatario, $asunto, $carta);

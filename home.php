@@ -1,3 +1,62 @@
+<?php
+/*session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+    exit();
+}
+
+
+
+require 'connection.php';
+$conection = conection();
+
+$nam = "";
+$email = "";
+$date1 = "";
+$pass= "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    if (!isset($_GET["email"])) {
+        header("location: home.php");
+        exit;
+    }
+
+    $email = $_GET["email"];
+
+    $sql = "SELECT * FROM productos WHERE email=$email";
+    $result = $conection->query($sql);
+    $row = $result->fetch_assoc();
+
+    if (!$row) {
+        header("location: home.php");
+    }
+
+    $nam = $row["nam"];
+    $date1 = $row["date1"];
+    $email = $row["email"];
+    $pass = $row["pass"];
+} else {
+
+    $email = $_POST["email"];
+    $nam = $row["nam"];
+    $date1 = $row["date1"];
+    $pass = $row["pass"];
+
+    $sql = "UPDATE productos " .
+        "SET nam = '$nam', date1 = '$date1', email = '$email', pass = '$pass' " .
+        "WHERE email = $email";
+
+
+    $result = $conection->query($sql);
+
+    header("location: home.php");
+    exit;
+}
+*/
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +85,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
+      <form action="" method="post">
+      <div data-mdb-input-init class="form-outline form-white">
+        <input required placeholder="First Name" type="text" name="nam" id="typeFirstNameX" class="form-control form-control-lg" value="" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div data-mdb-input-init class="form-outline form-white">
+                    <input required type="date" name="date1" id="typeLastNameX" class="form-control form-control-lg" value="" />
+                  </div>
+                </div>
+              <div data-mdb-input-init class="form-outline form-white  mb-3">
+                <input required placeholder="Email"  type="email" name="email" id="typeEmailX" class="form-control form-control-lg" value="" />
+              </div>
+              <div  data-mdb-input-init class="form-outline form-white mb-3">
+                <input required type="password" placeholder="Password" name="pass" id="contra1" class="form-control form-control-lg" value="" />
+              </div>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+        <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
       </div>
     </div>
   </div>

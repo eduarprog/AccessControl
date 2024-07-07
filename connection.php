@@ -1,8 +1,7 @@
 <?php
-
-function connection() {
-
-
+                //Conexion a puerto y base de datos
+function connection() 
+{
     $host = 'localhost';
     $user = 'root';
     $pass = '';
