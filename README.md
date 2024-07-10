@@ -4,7 +4,7 @@ Login con autenticador de datos existentes, registro y panel para editar informa
 
 - Crea una cuenta
 - Ingresa a sesión
-- Recupera tu contraseña o datos mediante tu correo
+- Recupera tu contraseña o datos mediante tu correo (Probar con un servidor externo)
 - Panel central con consejos de seguridad
 - Edita tus datos de tu cuenta desde el panel
 
