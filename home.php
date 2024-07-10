@@ -1,14 +1,12 @@
 <?php
-/*session_start();
+session_start();
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
 }
 
-
-
 require 'connection.php';
-$conection = conection();
+$connection = connection();
 
 $nam = "";
 $email = "";
@@ -22,40 +20,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         exit;
     }
 
-    $email = $_GET["email"];
+    $email = $conection->real_escape_string($_GET["email"]);
 
-    $sql = "SELECT * FROM productos WHERE email=$email";
-    $result = $conection->query($sql);
+    $sql = "SELECT * FROM productos WHERE email=?";
+    $stmt = $conection->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
     if (!$row) {
         header("location: home.php");
+        exit;
     }
 
-    $nam = $row["nam"];
-    $date1 = $row["date1"];
-    $email = $row["email"];
-    $pass = $row["pass"];
+    $nam = htmlspecialchars($row["nam"]);
+    $date1 = htmlspecialchars($row["date1"]);
+    $email = htmlspecialchars($row["email"]);
+    $pass = htmlspecialchars($row["pass"]);
+
 } else {
 
-    $email = $_POST["email"];
-    $nam = $row["nam"];
-    $date1 = $row["date1"];
-    $pass = $row["pass"];
+    $email = $conection->real_escape_string($_POST["email"]);
+    $nam = $conection->real_escape_string($_POST["nam"]);
+    $date1 = $conection->real_escape_string($_POST["date1"]);
+    $pass = $conection->real_escape_string($_POST["pass"]);
 
-    $sql = "UPDATE productos " .
-        "SET nam = '$nam', date1 = '$date1', email = '$email', pass = '$pass' " .
-        "WHERE email = $email";
-
-
-    $result = $conection->query($sql);
+    $sql = "UPDATE productos SET nam=?, date1=?, email=?, pass=? WHERE email=?";
+    $stmt = $conection->prepare($sql);
+    $stmt->bind_param("sssss", $nam, $date1, $email, $pass, $email);
+    $stmt->execute();
 
     header("location: home.php");
     exit;
 }
-*/
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <div class="container-fluid">
     <a class="navbar-brand">AccessControl</a>
     <div class="d-flex">
-      <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-user"></i>&nbsp;USER</button>
+      <button class="btn" title="View account" style="color: green;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-user"></i>&nbsp;USER</button>&nbsp;
      </div>
   </div>
 </nav>
@@ -83,33 +82,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Info Account</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <a title="Out" style="text-decoration: none; left: 148px; position: absolute; top: 21px;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
       </div>
       <div class="modal-body">
       <form action="" method="post">
-      <div data-mdb-input-init class="form-outline form-white">
-        <input required placeholder="First Name" type="text" name="nam" id="typeFirstNameX" class="form-control form-control-lg" value="" />
+      <div data-mdb-input-init class="form-outline form-white mb-3">
+        <input required placeholder="First Name" type="text" name="nam" id="typeFirstNameX" class="form-control form-control-lg" value="<?php echo $nam; ?>" />
                   </div>
-                </div>
                 <div class="col-6">
-                  <div data-mdb-input-init class="form-outline form-white">
-                    <input required type="date" name="date1" id="typeLastNameX" class="form-control form-control-lg" value="" />
+                  <div data-mdb-input-init class="form-outline form-white mb-3">
+                    <input required type="date" name="date1" id="typeLastNameX" class="form-control form-control-lg" value="<?php echo $date1; ?>" />
                   </div>
                 </div>
               <div data-mdb-input-init class="form-outline form-white  mb-3">
-                <input required placeholder="Email"  type="email" name="email" id="typeEmailX" class="form-control form-control-lg" value="" />
+                <input required placeholder="Email"  type="email" name="email" id="typeEmailX" class="form-control form-control-lg" value="<?php echo $email; ?>" />
               </div>
               <div  data-mdb-input-init class="form-outline form-white mb-3">
-                <input required type="password" placeholder="Password" name="pass" id="contra1" class="form-control form-control-lg" value="" />
+                <input required type="password" placeholder="Password" name="pass" id="contra1" class="form-control form-control-lg" value="<?php echo $pass; ?>" />
               </div>
+              <hr>
+              <button type="submit" title="Save" style="background-color: #34495E;" class="btn btn"><i class="fa-solid fa-floppy-disk" style="color: #f7f7f7;"></i></s></button>
         </form>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <a title="Salir" style="text-decoration: none;" href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #e40c0c;"></i>&nbsp;</a>
+    </div>
       </div>
     </div>
   </div>

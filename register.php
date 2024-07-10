@@ -9,16 +9,17 @@ $email = "";
 $pass = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST["nam"];
-    $date1 = $_POST["date1"];
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
+  $nam = $connection->real_escape_string($_POST["nam"]);
+  $date1 = $connection->real_escape_string($_POST["date1"]);
+  $email = $connection->real_escape_string($_POST["email"]);
+  $pass = $connection->real_escape_string($_POST["pass"]);
  
-    $sql = "INSERT INTO register (nam, date1, email, pass)" .
-           "VALUES ('$name', '$date1', '$email', '$password')";
-    $result = $connection->query($sql);
+  $sql = "INSERT INTO register (nam, date1, email, pass) VALUES (?, ?, ?, ?)";
+  $stmt = $connection->prepare($sql);
+  $stmt->bind_param("ssss", $nam, $date1, $email, $pass);
+  $stmt->execute();
 
-    header("location: register.php");
+    header("location: login.php");
     exit;
 }
 ?>
@@ -32,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Register - AccessControl</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="https://toppng.com/uploads/preview/yukle-wode-svg-png-icon-free-download-registration-ico-11563290294tngylbfqqx.png">
     <style>
       body{
         zoom: 90%;
+        background-color: #023D78;
       }
     </style>
 </head>
